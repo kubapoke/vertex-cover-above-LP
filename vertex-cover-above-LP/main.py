@@ -4,7 +4,7 @@ from kernel import find_kernel
 if __name__ == '__main__':
 
     edges = [(0, 1), (0, 2), (0, 3), (0, 4)]
-    graph = Graph(edges)
+    graph = Graph(5, edges)
 
     print("{}\n".format(graph))
 
