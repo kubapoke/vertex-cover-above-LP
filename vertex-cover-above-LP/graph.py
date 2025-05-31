@@ -3,9 +3,9 @@ from collections import defaultdict
 class Graph:
     """Undirected graph class"""
 
-    def __init__(self, vertex_count, edges):
+    def __init__(self, vertices, edges):
         self._graph = defaultdict(set)
-        self._vertices = set(range(vertex_count))
+        self._vertices = set(vertices)
         self.add_edges(edges)
 
     def __len__(self):
@@ -95,3 +95,13 @@ class Graph:
         """Returns all vertices in graph"""
 
         return list(self._vertices.copy())
+
+    def neighbors(self, v):
+        """Returns all neighbors of vertex in graph"""
+
+        self.verify_existence(v)
+
+        if v not in self._graph:
+            return []
+
+        return list(self._graph[v].copy())

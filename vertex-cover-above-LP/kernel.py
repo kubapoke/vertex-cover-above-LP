@@ -3,7 +3,7 @@ from graph import Graph
 def false_instance():
     """Returns a simple NO instance for the vertex cover problem"""
 
-    return Graph(2, [(0, 1)]), 0
+    return Graph(range(2), [(0, 1)]), 0
 
 def remove_vertices(graph, k):
     """Removes vertices in graph with degree larger than k and returns number of vertices removed"""
