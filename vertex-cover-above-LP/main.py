@@ -1,14 +1,13 @@
 from graph import Graph
+from kernel import find_kernel
 
 if __name__ == '__main__':
 
-    edges = [(0, 1), (1, 2), (2, 0), (1, 3), (3, 2)]
+    edges = [(0, 1), (0, 2), (0, 3), (0, 4)]
     graph = Graph(edges)
 
-    print(graph)
+    print("{}\n".format(graph))
 
-    graph.remove(1, 2)
-    graph.remove(0, 2)
-    graph.remove(3, 2)
+    graph, k = find_kernel(graph, 3)
 
-    print(graph)
+    print("{}\n{}".format(graph, k))
