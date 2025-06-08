@@ -1,3 +1,4 @@
+import copy
 from collections import defaultdict
 
 class Graph:
@@ -96,6 +97,14 @@ class Graph:
 
         return list(self._vertices.copy())
 
+    def adjacent(self, u, v):
+        """Returns whether vertex u is adjacent to vertex v"""
+
+        self.verify_existence(u)
+        self.verify_existence(v)
+
+        return u in self._graph[v] and v in self._graph[u]
+
     def neighbors(self, v):
         """Returns all neighbors of vertex in graph"""
 
@@ -105,3 +114,25 @@ class Graph:
             return []
 
         return list(self._graph[v].copy())
+
+    def induced_subgraph(self, V):
+        """Returns an induced subgraph based on the vertex subset V"""
+
+        new_edges = []
+
+        for u in V:
+            for v in V:
+                if self.adjacent(u, v):
+                    new_edges.append((u, v))
+
+        return Graph(V, new_edges)
+
+    def copy_without_vertices(self, V):
+        """Returns a copy of graph with vertices in V removed from graph"""
+
+        new_graph = copy.deepcopy(self)
+
+        for v in V:
+            new_graph.pop(v)
+
+        return new_graph

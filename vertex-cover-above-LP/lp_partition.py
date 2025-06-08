@@ -65,7 +65,7 @@ def bipartite_maximum_matching(graph, U, V):
                     matching += 1
     return pair_u, pair_v
 
-def minimum_vertex_cover(graph, U, V):
+def bipartite_minimum_vertex_cover(graph, U, V):
     """Implementation of Konig's theorem for finding minimum vertex cover in a bipartite graph"""
 
     pair_u, pair_v = bipartite_maximum_matching(graph, U, V)
@@ -98,15 +98,18 @@ def partition(graph):
     """Creates an LP partition of the given graph for the vertex cover problem"""
 
     bipartite_graph, U, V, offset = create_bipartite_graph(graph)
-    cover_U, cover_V = minimum_vertex_cover(bipartite_graph, U, V)
+    cover_U, cover_V = bipartite_minimum_vertex_cover(bipartite_graph, U, V)
 
-    result = {}
+    result = {0: [],
+              0.5: [],
+              1: []}
 
     for u in U:
-        result[u] = 0
+        lp_sum = 0
         if u in cover_U:
-            result[u] += 0.5
+            lp_sum += 0.5
         if u + offset in cover_V:
-            result[u] += 0.5
+            lp_sum += 0.5
+        result[lp_sum].append(u)
 
     return result

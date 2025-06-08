@@ -1,37 +1,43 @@
 from graph import Graph
 
-def false_instance():
-    """Returns a simple NO instance for the vertex cover problem"""
-
-    return Graph(range(2), [(0, 1)]), 0
-
 def remove_vertices(graph, k):
     """Removes vertices in graph with degree larger than k and returns number of vertices removed"""
 
-    removed = 0
+    changes = False
+    reduced_graph = graph.copy()
+    chosen = set()
 
-    for v in graph.vertices():
-        if graph.degree(v) == 0:
-            graph.pop(v)
-            removed += 1
+    for v in reduced_graph.vertices():
+        if reduced_graph.degree(v) == 0:
+            reduced_graph.pop(v)
+            changes = True
 
-    for v in graph.vertices():
-        if graph.degree(v) > k:
-            graph.pop(v)
-            removed += 1
+        if reduced_graph.degree(v) > k:
+            reduced_graph.pop(v)
+            changes = True
+            chosen.add(v)
             k -= 1
 
-    return removed, k
+    return changes, reduced_graph, chosen, k
 
-def find_kernel(graph, k):
-    """Given a graph and parameter k, the function returns the kernel instance for the vertex cover problem"""
+def reduce_via_vertex_removal(graph, k):
+    """Given a graph and parameter k, the function returns the kernel instance for the vertex cover problem using the standard reduction algorithm"""
 
-    removed = 1
+    changes = True
+    reduced_graph = graph.copy()
+    chosen = set()
 
-    while removed > 0:
-        removed, k = remove_vertices(graph, k)
+    while changes:
+        changes, reduced_graph, new_chosen, k = remove_vertices(graph, k)
+        chosen |= new_chosen
 
-    if graph.vertex_count() > k * k + k or graph.edge_count() > k * k:
-        return false_instance()
+    return reduced_graph, chosen, k
 
-    return graph, k
+def reduce_via_lp_partition(graph, k, lp_partition):
+    """Reduces a graph via a giver LP partition"""
+
+    chosen = set(lp_partition[1])
+
+    half_graph = graph.induced_subgraph(lp_partition[0.5])
+
+    return half_graph, chosen, k - len(chosen)
