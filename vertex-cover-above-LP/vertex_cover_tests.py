@@ -35,7 +35,7 @@ class TestVertexCover(unittest.TestCase):
             (3, 4), (5, 6), (0, 9)
         ]
         graph = Graph(range(10), edges)
-        result, cover = vertex_cover(graph, 5)
+        result, cover = vertex_cover(graph, 6)
         self.assertIsInstance(result, bool)
         if result:
             for u, v in edges:
