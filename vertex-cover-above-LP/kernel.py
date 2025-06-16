@@ -1,5 +1,3 @@
-from graph import Graph
-
 def remove_vertices(graph, k):
     """Removes vertices in graph with degree larger than k and returns number of vertices removed"""
 

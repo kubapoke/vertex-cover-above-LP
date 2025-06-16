@@ -1,5 +1,5 @@
+from testing.utilities.verifier import verify
 from vertex_cover import vertex_cover
-from verifier import verify
 from testing.utilities.generator import generate_random_graph
 
 if __name__ == '__main__':

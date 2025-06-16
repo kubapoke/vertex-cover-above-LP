@@ -1,4 +1,4 @@
-from kernel import reduce_via_lp_partition, reduce_via_vertex_removal
+from kernel import reduce_via_lp_partition
 from lp_partition import partition
 
 def only_halves(solution):
