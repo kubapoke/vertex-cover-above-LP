@@ -1,6 +1,6 @@
-from testing.brute_solver import brute_solve
-from testing.generator import generate_random_graph
-from testing.verifier import verify
+from testing.utilities.brute_solver import brute_solve
+from testing.utilities.generator import generate_random_graph
+from testing.utilities.verifier import verify
 from vertex_cover import vertex_cover
 
 if __name__ == "__main__":

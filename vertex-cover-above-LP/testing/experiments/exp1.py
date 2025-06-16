@@ -1,6 +1,6 @@
 from vertex_cover import vertex_cover
 from verifier import verify
-from testing.generator import generate_random_graph
+from testing.utilities.generator import generate_random_graph
 
 if __name__ == '__main__':
     import time

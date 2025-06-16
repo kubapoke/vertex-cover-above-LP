@@ -1,10 +1,10 @@
 from graph import Graph
-from testing.verifier import verify
+from testing.utilities.verifier import verify
 from vertex_cover import vertex_cover
 from mtx_to_graph import load_mtx_file
 
 if __name__ == '__main__':
-    filepath = 'mtx_graphs/web-polblogs.mtx'
+    filepath = '../mtx_graphs/web-polblogs.mtx'
     known_optimal_size = 244
 
     vertices, edges = load_mtx_file(filepath)

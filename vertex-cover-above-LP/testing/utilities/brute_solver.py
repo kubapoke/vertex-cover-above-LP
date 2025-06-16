@@ -1,5 +1,5 @@
 from itertools import combinations
-from testing.verifier import verify
+from testing.utilities.verifier import verify
 
 def all_subsets(collection):
     for r in range(len(collection) + 1):
