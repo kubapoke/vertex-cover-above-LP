@@ -50,7 +50,7 @@ def vertex_cover_branching(graph, k, lp_value, cover):
         lp_partition = partition(graph)
         lp_value = solution_value(lp_partition)
 
-    v = graph.vertices()[0]
+    v = graph.highest_degree()
     neighbors = graph.neighbors(v)
 
     # remove v

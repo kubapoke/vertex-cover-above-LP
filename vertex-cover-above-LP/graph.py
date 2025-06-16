@@ -136,3 +136,16 @@ class Graph:
             new_graph.pop(v)
 
         return new_graph
+
+    def highest_degree(self):
+        """Returns the vertex with the highest degree in the graph"""
+
+        ret = None
+        max_degree = float('-inf')
+
+        for v in self._vertices:
+            if self.degree(v) > max_degree:
+                max_degree = self.degree(v)
+                ret = v
+
+        return ret
